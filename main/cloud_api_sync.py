@@ -36,11 +36,11 @@ class cloudsynchroniser:
 if __name__ == '__main__':
     sync = cloudsynchroniser(client='mongodb://localhost:15485', db='mydatabase', connection='saved_models')
     
-    path = 'api1/api1'
+    path = 'apis/api1'
     model = keras.models.load_model(path)
     details = sync.upload_model(model, 'api1')
     
-    path = 'api2/api2'
+    path = 'apis/api2'
     model = keras.models.load_model(path)
     details = sync.upload_model(model, 'api2')
 

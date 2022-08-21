@@ -3,8 +3,6 @@ from skimage.transform import resize
 import PIL.Image as Image
 import io
 import numpy as np 
-import sys
-sys.path.insert(0, '../')
 import cloud_api_sync as cas
 
 
@@ -25,10 +23,10 @@ class TuborculosisPredictor:
     img_rs = resize(img2, (320, 320, 3), anti_aliasing=True)
     test = np.expand_dims(img_rs, axis=0)
     res = self.cnn.predict(test)
-    return res[0,0]
+    return res[0,0] > 0.6
 	
 if __name__ == '__main__':
-    tbpred = TuborculosisPredictor() 
+    tbpred = TuborculosisPredictor('apis/api2') 
 
     ipath = '/content/drive/MyDrive/data/chest_xray/test/NORMAL/IM-0001-0001.jpeg'
     img_byte = b''
